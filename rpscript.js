@@ -3,15 +3,14 @@
 function getComputerChoice() {
     let randomChoice = Math.floor(Math.random() * 100) + 1;
 
-    if (randomChoice >= 1 || randomChoice < 33) {
-        return "rock";
-    } else if (randomChoice >=33 || randomChoice < 66) {
-        return "paper";
+    if (randomChoice >= 1 && randomChoice < 33) {
+        randomChoice = "rock";
+    } else if (randomChoice >=33 && randomChoice < 66) {
+        randomChoice = "paper";
     } else {
-        return "scissors";
+        randomChoice = "Scissors";
     }
 }
 
 getComputerChoice();
 
-console.log(randomChoice);
