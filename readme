@@ -1,3 +1,11 @@
 1. how to get a random computer choice
   -1 get a random number
   -2 with conditional set a value for range of number
+
+2. how to get a human choice
+  -1 get a value from user's input
+
+3. Play
+  -1 If human wins increment humansScore plus one
+  -2 Else if computer wins increment computerScore plus one 
+  -3 Show winner and win counts
