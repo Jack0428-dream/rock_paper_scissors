@@ -9,3 +9,8 @@
   -1 If human wins increment humansScore plus one
   -2 Else if computer wins increment computerScore plus one 
   -3 Show winner and win counts
+
+4. Play 5rounds
+  -1.For loop to play 5rounds
+  -2.Add win scores every round till 5
+  
