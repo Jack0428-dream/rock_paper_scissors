@@ -10,7 +10,16 @@ function getComputerChoice() {
     } else {
         randomChoice = "Scissors";
     }
+//    console.log(randomChoice);
+}
+
+function getHumanChoice() {
+    let userChoice = prompt("Please enter your choice among rock, paper, scissors");
+//    console.log(userChoice);
 }
 
 getComputerChoice();
+getHumanChoice();
+
+
 
