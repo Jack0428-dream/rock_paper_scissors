@@ -40,7 +40,7 @@ function playRound(humanChoice, computerChoice) {
         console.log("You lose! Rock is too solid for your Scissors");
         winner = 5;
     } else if(humanChoice === computerChoice) {
-        console.log("You gussed computer's"); winner = 0;
+        console.log("You guessed computer's"); winner = 0;
     } 
     else {
         console.log("something went wrong check your inputs"); winner = 0;
@@ -49,26 +49,52 @@ function playRound(humanChoice, computerChoice) {
     return winner;
 }
 
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-    for (let i=0; i<5; i++) {
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
-        let winner = playRound(humanSelection, computerSelection);
+const button1 = document.createElement("button");
+button1.setAttribute("id", "rock");
+const button2 = document.createElement("button");
+button2.setAttribute("id", "paper");
+const button3 = document.createElement("button");
+button3.setAttribute("id", "scissors");
+const body = document.querySelector("#body");
 
-        if (winner % 2 === 0) {
-            humanScore += 1;
-        } else if (winner % 2 !== 0) {
-            computerScore += 1;
-        } else {console.log("No winner")};
-        console.log(humanScore);
-        console.log(computerScore);
-    }
-}
+const p1 = document.createElement("p");
+const p2 = document.createElement("p");
+const p3 = document.createElement("p");
 
-playGame();
+body.appendChild(p1);
+body.appendChild(p2);
+body.appendChild(p3);
 
+p1.appendChild(button1);
+p2.appendChild(button2);
+p3.appendChild(button3);
+
+button1.textContent = "Rock";
+button2.textContent = "Paper";
+button3.textContent = "Scissors";
+
+const btn1 = document.querySelector("#rock");
+const btn2 = document.querySelector("#paper");
+const btn3 = document.querySelector("#scissors");
+
+let randomChoice = getComputerChoice();
+
+btn1.addEventListener("click", () => {
+    playRound("rock", randomChoice);
+});
+
+btn2.addEventListener("click", () => {
+    playRound("paper", randomChoice);
+});
+
+btn3.addEventListener("click", () => {
+    playRound("scissors", randomChoice);
+});
+
+const p4 = document.createElement("p");
+body.appendChild(p4);
+const div = document.createElement("div");
+p4.appendChild(div);
 
 
 
