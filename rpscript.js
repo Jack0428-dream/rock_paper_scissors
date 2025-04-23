@@ -20,33 +20,32 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice) {
-    let winner;
+    let msg = "";
+    let num = 0;
     if (humanChoice == "rock" && computerChoice == "paper" ) {
-        console.log("You lose! Paper beats Rock"); 
-        winner = 1;
+        msg = "You lose! Paper beats Rock"; 
+        num = 0;
     } else if(humanChoice == "rock" && computerChoice == "scissors") {
-        console.log("You win! Rock crushes Scissors");
-        winner = 2;
+        msg = "You win! Rock crushes Scissors";
+        num = 1;
     } else if(humanChoice == "paper" && computerChoice == "rock") {
-        console.log("You win! Paper beats Rock");
-        winner = 4;
+        msg = "You win! Paper beats Rock";
+        num = 1;
     } else if(humanChoice == "paper" && computerChoice == "scissors") {
-        console.log("You lose! Scissors tear up Paper"); 
-        winner = 3;
+        msg = "You lose! Scissors tear up Paper";
+        num = 0;
     } else if(humanChoice == "scissors" && computerChoice == "paper") {
-        console.log("You win! Scissors tear up Paper");
-        winner = 6;
+        msg = "You win! Scissors tear up Paper";
+        num = 1;
     } else if(humanChoice == "scissors" && computerChoice == "rock") {
-        console.log("You lose! Rock is too solid for your Scissors");
-        winner = 5;
+        msg = "You lose! Rock is too solid for your Scissors";
+        num = 0;
     } else if(humanChoice === computerChoice) {
-        console.log("You guessed computer's"); winner = 0;
-    } 
-    else {
-        console.log("something went wrong check your inputs"); winner = 0;
-    }
+        msg = "You guessed computer's choice"
+        num = 0;
+    };
 
-    return winner;
+    return [msg, num];
 }
 
 const button1 = document.createElement("button");
@@ -69,33 +68,51 @@ p1.appendChild(button1);
 p2.appendChild(button2);
 p3.appendChild(button3);
 
-button1.textContent = "Rock";
-button2.textContent = "Paper";
-button3.textContent = "Scissors";
+button1.textContent = button1.id;
+button2.textContent = button2.id;
+button3.textContent = button3.id;
 
-const btn1 = document.querySelector("#rock");
-const btn2 = document.querySelector("#paper");
-const btn3 = document.querySelector("#scissors");
+const buttons = document.querySelectorAll("button");
 
 let randomChoice = getComputerChoice();
-
-btn1.addEventListener("click", () => {
-    playRound("rock", randomChoice);
-});
-
-btn2.addEventListener("click", () => {
-    playRound("paper", randomChoice);
-});
-
-btn3.addEventListener("click", () => {
-    playRound("scissors", randomChoice);
-});
 
 const p4 = document.createElement("p");
 body.appendChild(p4);
 const div = document.createElement("div");
 p4.appendChild(div);
+div.setAttribute('style', 'white-space: pre');
 
+let winScore = 0;
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        let result = [];
+        if (button.id === "rock") {
+            result = playRound("rock", getComputerChoice());
+            div.textContent += result[0]+".\r\n";
+            winScore += result[1];
+        } else if (button.id === "paper") {
+            result = playRound("paper", getComputerChoice());
+            div.textContent += result[0]+".\r\n";
+            winScore += result[1];
+        } else if (button.id === "scissors") {
+            result = playRound("scissors", getComputerChoice());
+            div.textContent += result[0]+".\r\n";
+            winScore += result[1];
+        }
+
+        if (winScore >= 2 && winScore != 5) {
+            div.textContent += "You win"+ `${winScore}`+ "times"+"\r\n" 
+        } else if (winScore === 1) {
+            div.textContent += "You win for the first time!"+"\r\n";
+        } else if (winScore === 5) {
+            div.textContent += "You've reached 5points. You Win!"+"\r\n";
+            p1.removeChild(button1);
+            p2.removeChild(button2);
+            p3.removeChild(button3);
+        }
+
+    });
+});
 
 
 
